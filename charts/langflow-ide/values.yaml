@@ -250,6 +250,5 @@ postgresql:
     tag: 16.4.0-debian-12-r19            # 使用该仓库下可用的标签[reference:4]
   auth:
     username: "langflow" # 可选，自定义数据库用户名[reference:2]
-    existingSecret: "langflow-postgres-secret"
-    secretKeys: "postgres-password"
+    existingSecret: "langflow-db-secret"
     # password: "your-strong-password" # 强烈建议通过 Secret 方式设置
