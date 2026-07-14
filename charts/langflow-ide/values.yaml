@@ -89,6 +89,8 @@ langflow:
         value: "/app/db/alembic.log"
       - name: LANGFLOW_UPDATE_STARTER_PROJECTS
         value: "false"
+      - name: LANGFLOW_AUTO_RELOAD
+        value: "false"
     nodeSelector: {}
     tolerations: []
     affinity: {}
