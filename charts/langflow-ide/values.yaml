@@ -70,6 +70,7 @@ langflow:
       - --host
       - 0.0.0.0
       - --backend-only
+      - --no-reload
     resources:
       requests:
         cpu: 0.5
