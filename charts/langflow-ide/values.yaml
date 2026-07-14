@@ -128,7 +128,7 @@ langflow:
       password:
         valueFrom:        # 推荐从 Kubernetes Secret 读取密码[reference:5]
           secretKeyRef:
-            key: "password"
+            key: "postgres-password"
             name: "langflow-db-secret" # Secret 名称
       database:
         value: "langflow-db" # 数据库名[reference:6]
