@@ -251,4 +251,5 @@ postgresql:
   auth:
     username: "langflow" # 可选，自定义数据库用户名[reference:2]
     existingSecret: "langflow-postgres-secret"
+    secretKeys: "postgres-password"
     # password: "your-strong-password" # 强烈建议通过 Secret 方式设置
