@@ -244,6 +244,10 @@ secretProvider:
 postgresql:
   enabled: true
   fullnameOverride: "langflow-ide-postgresql-service"  # 可选，为服务自定义名称[reference:1]
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/postgresql  # 使用新的仓库地址
+    tag: 16.4.0-debian-12-r19            # 使用该仓库下可用的标签[reference:4]
   auth:
     username: "langflow" # 可选，自定义数据库用户名[reference:2]
     existingSecret: "langflow-postgres-secret"
