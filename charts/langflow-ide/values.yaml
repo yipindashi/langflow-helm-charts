@@ -116,18 +116,22 @@ langflow:
     externalDatabase:
       # Compose in the SQLAlchemy format:
       # https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls
-      enabled: false
-      driver: {}
-        # value: "postgresql"
-      host: {}
-      port: {}
-      user: {}
-      password: {}
-        # valueFrom:
-        #   secretKeyRef:
-        #    key: password
-        #    name: <secret-name>
-      database: {}
+      enabled: true
+      driver:
+        value: "postgresql"
+      host:
+        value: "langflow-ide-postgresql-service" # 服务名，需与上面的 fullnameOverride 一致[reference:4]
+      port:
+        value: "5432"
+      user:
+        value: "langflow" # 与上面的 auth.username 一致
+      password:
+        valueFrom:        # 推荐从 Kubernetes Secret 读取密码[reference:5]
+          secretKeyRef:
+            key: "password"
+            name: "langflow-db-secret" # Secret 名称
+      database:
+        value: "langflow-db" # 数据库名[reference:6]
 
     volumes:
       - name: flows
@@ -154,7 +158,7 @@ langflow:
         readOnly: false
 
     sqlite:
-      enabled: true
+      enabled: false
       volume:
         size: "1Gi"
         existingStorageClassName: "default"
@@ -238,4 +242,9 @@ secretProvider:
   enabled: false
 
 postgresql:
-  enabled: false
+  enabled: true
+  fullnameOverride: "langflow-ide-postgresql-service"  # 可选，为服务自定义名称[reference:1]
+  auth:
+    username: "langflow" # 可选，自定义数据库用户名[reference:2]
+    existingSecret: "langflow-postgres-secret"
+    # password: "your-strong-password" # 强烈建议通过 Secret 方式设置
