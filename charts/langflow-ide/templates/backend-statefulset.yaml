@@ -83,11 +83,16 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- end }}
+          startupProbe:               # 专门针对慢启动的探针
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 30      # 允许失败 30 次
+            periodSeconds: 5          # 每 5 秒检查一次（总共给 30*5=150 秒 启动时间）
           livenessProbe:
             httpGet:
               path: /health
               port: http
-              
             initialDelaySeconds: {{ .Values.langflow.backend.probe.initialDelaySeconds }}
             periodSeconds: {{ .Values.langflow.backend.probe.periodSeconds }}
             timeoutSeconds: {{ .Values.langflow.backend.probe.timeoutSeconds }}
