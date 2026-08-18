@@ -84,7 +84,7 @@ langflow:
       failureThreshold: 3
       periodSeconds: 10
       timeoutSeconds: 5
-      initialDelaySeconds: 120
+      initialDelaySeconds: 5
     env:
       - name: LANGFLOW_PORT
         value: "7860"
