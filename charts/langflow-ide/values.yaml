@@ -84,7 +84,7 @@ langflow:
       failureThreshold: 3
       periodSeconds: 10
       timeoutSeconds: 5
-      initialDelaySeconds: 5
+      initialDelaySeconds: 120
     env:
       - name: LANGFLOW_PORT
         value: "7860"
@@ -209,8 +209,9 @@ langflow:
     enabled: true
     replicaCount: 1
     service:
-      type: ClusterIP
+      type: NodePort
       port: 8080
+      nodePort: 30004
     image:
       repository: langflowai/langflow-frontend
       imagePullPolicy: IfNotPresent
