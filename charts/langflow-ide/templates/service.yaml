@@ -13,6 +13,7 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      nodePort: {{ .Values.langflow.frontend.service.nodePort }}
   selector:
     app: {{ template "langflow.name" . }}
     chart: {{ template "langflow.chart" . }}
